@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Credit Scoring Model</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Credit Scoring Model</h1>
+
+    <p class="subtitle">
+        Machine Learning Based Credit Risk Prediction
+    </p>
+
+    <form action="/predict" method="POST">
+
+        <label>Loan Duration (months)</label>
+        <input type="number" name="duration" min="1" required>
+
+        <label>Credit Amount</label>
+        <input type="number" name="credit_amount" min="1" required>
+
+        <label>Installment Commitment (1-4)</label>
+        <input
+            type="number"
+            name="installment_commitment"
+            min="1"
+            max="4"
+            required
+        >
+
+        <label>Years at Current Residence</label>
+        <input
+            type="number"
+            name="residence_since"
+            min="1"
+            required
+        >
+
+        <label>Age</label>
+        <input
+            type="number"
+            name="age"
+            min="18"
+            required
+        >
+
+        <label>Existing Credits</label>
+        <input
+            type="number"
+            name="existing_credits"
+            min="1"
+            required
+        >
+
+        <label>Number of Dependents</label>
+        <input
+            type="number"
+            name="num_dependents"
+            min="1"
+            required
+        >
+
+        <button type="submit">
+            Check Credit Risk
+        </button>
+
+    </form>
+
+    {% if result %}
+
+    <div class="result">
+
+        <h2>{{ result }}</h2>
+
+        <p>{{ message }}</p>
+
+        <p>
+            Estimated Higher-Risk Percentage:
+            <strong>{{ risk }}%</strong>
+        </p>
+
+    </div>
+
+    {% endif %}
+
+    <p class="note">
+        This application is a machine-learning demonstration
+        and should not be used as a real financial approval decision.
+    </p>
+
+</div>
+
+</body>
+</html>
